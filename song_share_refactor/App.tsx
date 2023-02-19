@@ -28,11 +28,13 @@ import {
 import { firebaseApp, authProvider, auth } from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import Signin from './Signin'
+import Signin from './Signin';
 import MainPage from './MainPage';
-import Signout from './Signout'
+import Appbar from './Appbar'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MainDrawer from './MainDrawer';
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -65,7 +67,7 @@ export default function App() {
   //Function to call MainPage component. Done this way to correctly pass userDetails
   const SwitchToMain = ({ navigation, route }) => {
     return (
-      <MainPage userDetails={userDetails} setUserDetails={setUserDetails} navigation={navigation} route={route} />
+      <MainDrawer userDetails = {userDetails} setUserDetails = {setUserDetails} navigation = {navigation} route = {route}/>
     )
   }
 
@@ -82,10 +84,11 @@ export default function App() {
         <Stack.Screen
           name="main"
           component={SwitchToMain}
-          options={{ title: "Song Share" }}
+          options={{ headerShown: false }}
         />
 
       </Stack.Navigator>
+      
     </NavigationContainer>
 
 

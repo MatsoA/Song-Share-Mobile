@@ -10,17 +10,9 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export default function Signin(userDetails, setUserDetails, navigation) {
 
-    //needed for signInWithPopup
 
-    //Object to manage info about current user
-    //Expected to be populated by Signin
-    //TODO: handle uid
-
-    //use effect hook allows us to handle behavior after promise correctly (useEffect waits for a change)
-    //https://upmostly.com/tutorials/how-to-handle-promises-in-react
-
-    //wrapper for popup
-
+    //sets up following Google Sign in Calls
+    //webClientId obtained on Firebase Console
     GoogleSignin.configure({
         webClientId: '395459585745-veeqnqismosv23sqnto3l3fbk6rcd9r8.apps.googleusercontent.com',
         offlineAccess: true,
@@ -35,9 +27,11 @@ export default function Signin(userDetails, setUserDetails, navigation) {
         // Sign-in the user with the credential
         auth().signInWithCredential(googleCredential);
 
+        //Get details of user just signed in
         const currentUser = await GoogleSignin.getCurrentUser();
         console.log(currentUser)
 
+        //update details and send to other components
         setUserDetails({
             userName: currentUser.user.name,
             email: currentUser.user.email,
@@ -49,6 +43,7 @@ export default function Signin(userDetails, setUserDetails, navigation) {
 
     signinUser()
 
+    //switch to main page
     navigation.navigate("main")
 
 }

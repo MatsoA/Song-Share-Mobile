@@ -1,26 +1,21 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Signout from './Signout';
+import Appbar from './Appbar';
 
 export default function MainPage({ userDetails, setUserDetails, navigation, route }) {
-
-
-    console.log(userDetails)
-    console.log(setUserDetails)
-
     return (
-        <View style={styles.container}>
-            
-            <Text>
-                Username: {userDetails.userName} {"\n"}
-                Email: {userDetails.email}
-            </Text>
-            <Image style={styles.profilePicture} source={{ uri: userDetails.profilePicture }} />
 
-            <Signout userDetails= {userDetails} setUserDetails={setUserDetails} navigation={navigation} route={route} />
-        </View>
+            <View>
+                <Text>
+                    Username: {userDetails.userName} {"\n"}
+                    Email: {userDetails.email}
+                </Text>
+                <Signout userDetails= {userDetails} setUserDetails={setUserDetails} navigation={navigation} route={route} />
+            </View>
     );
+
 }
 
 const styles = StyleSheet.create({
@@ -35,6 +30,8 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
     }
+
+    
 });
 
 
