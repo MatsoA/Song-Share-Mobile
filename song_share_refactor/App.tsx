@@ -30,6 +30,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import Signin from './Signin'
 import MainPage from './MainPage';
+import Signout from './Signout'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -56,7 +57,7 @@ export default function App() {
   const SigninPage = ({ navigation, route }) => {
     return (
       <Button title="Sign In" onPress={() => {
-        Signin(userDetails, setUserDetails, navigation, auth)
+        Signin(userDetails, setUserDetails, navigation)
       }}> Sign In </Button>
     )
   }
@@ -64,9 +65,10 @@ export default function App() {
   //Function to call MainPage component. Done this way to correctly pass userDetails
   const SwitchToMain = ({ navigation, route }) => {
     return (
-      <MainPage userDetails={userDetails} />
+      <MainPage userDetails={userDetails} setUserDetails={setUserDetails} navigation={navigation} route={route} />
     )
   }
+
 
   return (
 

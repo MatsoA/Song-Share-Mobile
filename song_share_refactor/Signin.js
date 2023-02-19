@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithRedirect, signInwithCredntial } from "firebase/auth";
+import auth from '@react-native-firebase/auth';
 import { firebaseApp, authProvider } from "./firebaseConfig";
 import { useState, useEffect } from "react";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
@@ -8,7 +8,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 //Google Authentication Documentation: https://firebase.google.com/docs/auth/web/google-signin?authuser=0#handle_the_sign-in_flow_with_the_firebase_sdk
 
-export default function Signin(userDetails, setUserDetails, navigation, auth) {
+export default function Signin(userDetails, setUserDetails, navigation) {
 
     //needed for signInWithPopup
 
@@ -20,40 +20,35 @@ export default function Signin(userDetails, setUserDetails, navigation, auth) {
     //https://upmostly.com/tutorials/how-to-handle-promises-in-react
 
     //wrapper for popup
-    const signinUser = async () => {
 
-        GoogleSignin.signIn()
-            .then((response) => { handleCredentialResponse(response) })
+    GoogleSignin.configure({
+        webClientId: '395459585745-veeqnqismosv23sqnto3l3fbk6rcd9r8.apps.googleusercontent.com',
+        offlineAccess: true,
+    });
 
-        function handleCredentialResponse(response) {
-            // Build Firebase credential with the Google ID token.
-            const idToken = response.credential;
-            const credential = GoogleAuthProvider.credential(idToken);
+    async function signinUser() {
+        // Get the users ID token
+        const { idToken } = await GoogleSignin.signIn();
+        // Create a Google credential with the token
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+        
+        // Sign-in the user with the credential
+        auth().signInWithCredential(googleCredential);
 
-            setUserDetails({
-                userName: user.displayName,
-                email: user.email,
-                profilePicture: user.photoURL,
-                uid: user.uid
-            });
+        const currentUser = await GoogleSignin.getCurrentUser();
+        console.log(currentUser)
 
-            navigation.navigate("main")
-
-            // Sign in with credential from the Google user.
-            signInWithCredential(auth, credential).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.email;
-                // The credential that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-            });
-        }
-
+        setUserDetails({
+            userName: currentUser.user.name,
+            email: currentUser.user.email,
+            profilePicture: currentUser.user.photo,
+            uid: currentUser.user.id
+        })
+        
     }
 
     signinUser()
+
+    navigation.navigate("main")
 
 }

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "395459585745",
+    "firebase_url": "https://song-share-30bef-default-rtdb.firebaseio.com",
+    "project_id": "song-share-30bef",
+    "storage_bucket": "song-share-30bef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395459585745:android:6657c4c58001a6d6fa87f0",
+        "android_client_info": {
+          "package_name": "com.song_share_refactor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395459585745-kinjovb8f3nbka4gjivgcckqj6g53jlg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.song_share_refactor",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "395459585745-veeqnqismosv23sqnto3l3fbk6rcd9r8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ4GFW1NiNyI_NtmoqIm3FuXGkjRDKBy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395459585745-rpd6j9rg709cjrojfdv52v19m3jlijbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
