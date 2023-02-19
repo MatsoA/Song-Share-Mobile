@@ -28,12 +28,12 @@ import {
 import { firebaseApp, authProvider, auth } from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import Signin from './Signin';
-import MainPage from './MainPage';
-import Appbar from './Appbar'
+import Signin from './Components/Signin';
+import MainPage from './Components/MainPage';
+import Appbar from './Components/Appbar'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MainDrawer from './MainDrawer';
+import MainDrawer from './Components/MainDrawer';
 
 
 // TODO: Add SDKs for Firebase products that you want to use

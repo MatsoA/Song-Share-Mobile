@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import { firebaseApp, authProvider } from "./firebaseConfig";
+import { firebaseApp, authProvider } from "../firebaseConfig";
 import { useState, useEffect } from "react";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
